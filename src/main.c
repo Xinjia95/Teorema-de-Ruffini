@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include <math.h>
 
 void pause() {
 
@@ -36,6 +35,8 @@ int ruffini_3( int coeficiente1, int coeficiente2, int coeficiente3, int divisor
 	if ( divisor == -89 ) {
 
 		printf( "Calculando...\n" );
+
+		calculo[7] = 200;
 
 		for ( divisor = -20; calculo[7] != calculo[2]; divisor++ ) {
 
@@ -93,6 +94,8 @@ int ruffini_4( int coeficiente1, int coeficiente2, int coeficiente3, int coefici
 
 		printf("Calculando...\n");
 
+		calculo[7] = 200;
+
 		for (divisor = -15; calculo[4] != 0; divisor++) {
 
 			calculo[4] =  ((((((coeficiente1 * divisor) + coeficiente2) * divisor) + coeficiente3) * divisor) + coeficiente4 );
@@ -116,13 +119,57 @@ int ruffini_4( int coeficiente1, int coeficiente2, int coeficiente3, int coefici
 
 int ruffini_5( int coeficiente1, int coeficiente2, int coeficiente3, int coeficiente4, int coeficiente5, int divisor ) {
 
-    printf( "%i\n", coeficiente1 );
-    printf( "%i\n", coeficiente2 );
-	printf( "%i\n", coeficiente3 );
-    printf( "%i\n", coeficiente4 );
-    printf( "%i\n", coeficiente5 );
+	int calculo[12];
 
-    return 0;
+		if (divisor == -89) {
+
+			printf("Calculando...\n");
+
+			calculo[9] = 200;
+
+			for (divisor = -20; calculo[9] != 0; divisor++) {
+
+				calculo[9] = ((((((((coeficiente1 * divisor) + coeficiente2) * divisor) + coeficiente3) * divisor) + coeficiente4) * divisor) + coeficiente5);
+
+				calculo[1] = coeficiente1 * divisor;
+				calculo[2] = calculo[1] + coeficiente2;
+				calculo[3] = calculo[2] * divisor;
+				calculo[4] = calculo[3] + coeficiente3;
+				calculo[5] = calculo[4] * divisor;
+				calculo[6] = calculo[5] + coeficiente4;
+				calculo[7] = calculo[6] * divisor;
+				calculo[8] = calculo[7]+ coeficiente5;
+
+			}
+
+			printf("\n\n");
+			printf("  |%i  %i  %i  %i  %i\n", coeficiente1, coeficiente2, coeficiente3, coeficiente4, coeficiente5);
+			printf("  |\n");
+			printf(" %i|    %i   %i  %i %i\n", divisor - 1, calculo[1], calculo[3], calculo[5], calculo[7]);
+			printf("__|____________________\n");
+			printf("   %i   %i   %i  %i |%i|\n", coeficiente1, calculo[2], calculo[4], calculo[6], calculo[9]);
+
+		} else {
+
+			calculo[1] = coeficiente1 * divisor;
+			calculo[2] = calculo[1] + coeficiente2;
+			calculo[3] = calculo[2] * divisor;
+			calculo[4] = calculo[3] + coeficiente3;
+			calculo[5] = calculo[4] * divisor;
+			calculo[6] = calculo[5] + coeficiente4;
+			calculo[7] = calculo[6] * divisor;
+			calculo[8] = calculo[7]+ coeficiente5;
+
+			printf("\n\n");
+			printf("  |%i  %i  %i  %i  %i\n", coeficiente1, coeficiente2, coeficiente3, coeficiente4, coeficiente5);
+			printf("  |\n");
+			printf(" %i|    %i   %i  %i %i\n", divisor - 1, calculo[1], calculo[3], calculo[5], calculo[7]);
+			printf("__|____________________\n");
+			printf("   %i   %i   %i  %i |%i|\n", coeficiente1, calculo[2], calculo[4], calculo[6], calculo[9]);
+
+		}
+
+	    return 0;
 
 }
 
