@@ -28,65 +28,9 @@ void pause() {
 
 }
 
-int ruffini_3( int coeficiente1, int coeficiente2, int coeficiente3, int divisor ) {
-
-    int calculo[8];
-
-	if ( divisor == -89 ) {
-
-		printf( "Calculando...\n" );
-
-		calculo[7] = 200;
-
-		for ( divisor = -20; calculo[7] != calculo[2]; divisor++ ) {
-
-			calculo[7] = ( coeficiente3 + ( coeficiente2 + ( coeficiente1 * divisor ) * divisor ) * divisor );
-
-			//Calculando Ruffini
-			calculo[0] = coeficiente1 * divisor;
-			calculo[1] = ( coeficiente2 + calculo[0] ) * divisor;
-			calculo[2] =  coeficiente3 + calculo[1];
-
-		}
-
-        if ( calculo[7] != calculo[2] ) {
-
-            printf( "es diferente\n %i\n", calculo[7] );
-
-        }
-
-		printf( "%i\n", divisor );
-
-		printf( "\n\n" );
-		printf( "    |%i  %i   %i\n", coeficiente1, coeficiente2, coeficiente3 );
-		printf(  "    |\n");
-		printf( " %i  |   %i  %i\n", divisor -1, calculo[0], calculo[1] );
-		printf( "____|________________________\n");
-		printf( "     |%i  %i |%i|\n", coeficiente1, calculo[0] + coeficiente2, calculo[2] );
-
-	} else {
-
-		//Calculando Ruffini
-		calculo[0] = coeficiente1 * divisor;
-		calculo[1] = ( coeficiente2 + calculo[0] ) * divisor;
-		calculo[2] =  coeficiente3 + calculo[1];
-
-		printf( "\n\n" );
-		printf( "  |%i  %i   %i\n", coeficiente1, coeficiente2, coeficiente3 );
-		printf(  "  |\n");
-		printf( " %i|  %i  %i\n", divisor , calculo[0], calculo[1] );
-		printf( "__|________________________\n");
-		printf( "   |%i  %i |%i|\n", coeficiente1, calculo[0] + coeficiente2, calculo[2] );
-
-	}
-
-    return 0;
-
-}
-
 int ruffini_4( int coeficiente1, int coeficiente2, int coeficiente3, int coeficiente4, int divisor ) {
 
-	int calculo[8];
+	int calculo[7];
 
 	if (divisor == -89) {
 
@@ -100,22 +44,26 @@ int ruffini_4( int coeficiente1, int coeficiente2, int coeficiente3, int coefici
 
 		}
 
-		divisor--;
-		calculo[1] = coeficiente1 * divisor;
-		calculo[2] = calculo[1] + coeficiente2;
-		calculo[3] = calculo[2] * divisor;
-		calculo[4] = calculo[3] + coeficiente3;
-		calculo[5] = calculo[4] * divisor;
-		calculo[6] = calculo[5] + coeficiente4;
+	} else {
 
-		printf("\n\n");
-		printf("  |%i  %i  %i  %i\n", coeficiente1, coeficiente2, coeficiente3, coeficiente4);
-		printf("  |\n");
-		printf(" %i|    %i   %i %i\n", divisor, calculo[1], calculo[3], calculo[5]);
-		printf("__|____________________\n");
-		printf("   %i   %i   %i |%i|\n", coeficiente1, calculo[2], calculo[4], calculo[6]);
+		divisor++;
 
 	}
+
+	divisor--;
+	calculo[1] = coeficiente1 * divisor;
+	calculo[2] = calculo[1] + coeficiente2;
+	calculo[3] = calculo[2] * divisor;
+	calculo[4] = calculo[3] + coeficiente3;
+	calculo[5] = calculo[4] * divisor;
+	calculo[6] = calculo[5] + coeficiente4;
+
+	printf("\n\n");
+	printf("  |%i  %i  %i  %i\n", coeficiente1, coeficiente2, coeficiente3, coeficiente4);
+	printf("  |\n");
+	printf(" %i|    %i   %i %i\n", divisor, calculo[1], calculo[3], calculo[5]);
+	printf("__|____________________\n");
+	printf("   %i   %i   %i |%i|\n", coeficiente1, calculo[2], calculo[4], calculo[6]);
 
     return 0;
 
@@ -136,6 +84,10 @@ int ruffini_5( int coeficiente1, int coeficiente2, int coeficiente3, int coefici
 				calculo[9] = ((((((((coeficiente1 * divisor) + coeficiente2) * divisor) + coeficiente3) * divisor) + coeficiente4) * divisor) + coeficiente5);
 
 			}
+
+		} else {
+
+			divisor++;
 
 		}
 
@@ -180,55 +132,6 @@ int main() {
     }
 
     switch ( NumeroCoeficientes ) {
-
-        case 3:
-
-            //factorizar( 3 );
-
-            printf( "Introduce los 3 coeficientes:\n" );
-            printf( "1-> " );
-            scanf( "%i", &coeficiente[0] );
-            printf( "2-> " );
-            scanf( "%i", &coeficiente[1] );
-            printf( "3-> " );
-            scanf( "%i", &coeficiente[2] );
-            printf( "¿Quieres hallar el divisor?[S/N]: " );
-            scanf( "%s", &OpcionDivisor );
-
-            switch ( OpcionDivisor ) {
-
-                case 83://S
-
-                    ruffini_3( coeficiente[0], coeficiente[1], coeficiente[2], -89 );
-
-                    break;
-
-                case 115://s
-
-                    ruffini_3( coeficiente[0], coeficiente[1], coeficiente[2], -89 );
-
-                    break;
-
-                case 78://N
-
-                    printf( "Introduce el divisor: " );
-                    scanf( "%i", &divisor );
-
-                    ruffini_3( coeficiente[0], coeficiente[1], coeficiente[2], divisor );
-
-                    break;
-
-                case 110://n
-
-                    printf( "Introduce el divisor: " );
-                    scanf( "%i", &divisor );
-
-                    ruffini_3( coeficiente[0], coeficiente[1], coeficiente[2], divisor );
-
-                    break;
-            }
-
-            break;
 
         case 4:
 
